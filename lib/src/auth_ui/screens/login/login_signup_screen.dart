@@ -6,8 +6,8 @@ import '../../widgets/app_logo.dart';
 import 'signin_form.dart';
 import 'signup_form.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class LoginSignupScreen extends StatelessWidget {
+  const LoginSignupScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
