@@ -11,32 +11,35 @@ class LoginSignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: ColorPalette.primaryColor,
-        body: SafeArea(
-          child: SizedBox(
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: tfWidth(4)),
-                child: Column(
-                  children: [
-                    SizedBox(height: tfHeight(5)),
-                    const AppLogo(),
-                    SizedBox(height: tfHeight(5)),
-                    _buildAuthTabsContent(context),
-                    _buildSocialLoginPanel(context),
-                    SizedBox(height: tfHeight(5)),
-                  ],
+    return TfResponsiveBuilder(
+        builder: ((context, deviceType, deviceOrientation) {
+      return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          backgroundColor: ColorPalette.primaryColor,
+          body: SafeArea(
+            child: SizedBox(
+              width: double.infinity,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: tfWidth(4)),
+                  child: Column(
+                    children: [
+                      SizedBox(height: tfHeight(5)),
+                      const AppLogo(),
+                      SizedBox(height: tfHeight(5)),
+                      _buildAuthTabsContent(context),
+                      _buildSocialLoginPanel(context),
+                      SizedBox(height: tfHeight(5)),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }));
   }
 
   Widget _buildAuthTabsContent(BuildContext context) {
@@ -101,7 +104,7 @@ class LoginSignupScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: tfHeight(2)),
-        FittedBox(
+        /* FittedBox(
           fit: BoxFit.scaleDown,
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -121,7 +124,7 @@ class LoginSignupScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ), */
       ],
     );
   }
