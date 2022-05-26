@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:tf_auth_page/tf_auth_page.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_text_field.dart';
 
 class SignUpForm extends StatelessWidget {
-  SignUpForm({Key? key}) : super(key: key);
+  SignUpForm({Key? key, required this.authProvider}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
   final _emailTextEditingController = TextEditingController();
   final _passwordTextEditingController = TextEditingController();
+
+  final TfAuth authProvider;
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tf_auth_firebase/tf_auth_firebase.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../resources/colors.dart';
@@ -7,39 +8,43 @@ import 'signin_form.dart';
 import 'signup_form.dart';
 
 class LoginSignupScreen extends StatelessWidget {
-  const LoginSignupScreen({Key? key}) : super(key: key);
+  const LoginSignupScreen({Key? key, required this.authProvider})
+      : super(key: key);
+
+  final TfAuth authProvider;
 
   @override
   Widget build(BuildContext context) {
     return TfResponsiveBuilder(
-        builder: ((context, deviceType, deviceOrientation) {
-      return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          backgroundColor: ColorPalette.primaryColor,
-          body: SafeArea(
-            child: SizedBox(
-              width: double.infinity,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: tfWidth(4)),
-                  child: Column(
-                    children: [
-                      SizedBox(height: tfHeight(5)),
-                      const AppLogo(),
-                      SizedBox(height: tfHeight(5)),
-                      _buildAuthTabsContent(context),
-                      _buildSocialLoginPanel(context),
-                      SizedBox(height: tfHeight(5)),
-                    ],
+      builder: ((context, deviceType, deviceOrientation) {
+        return DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            backgroundColor: ColorPalette.primaryColor,
+            body: SafeArea(
+              child: SizedBox(
+                width: double.infinity,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: tfWidth(4)),
+                    child: Column(
+                      children: [
+                        SizedBox(height: tfHeight(5)),
+                        const AppLogo(),
+                        SizedBox(height: tfHeight(5)),
+                        _buildAuthTabsContent(context),
+                        _buildSocialLoginPanel(context),
+                        SizedBox(height: tfHeight(5)),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-      );
-    }));
+        );
+      }),
+    );
   }
 
   Widget _buildAuthTabsContent(BuildContext context) {
@@ -82,11 +87,15 @@ class LoginSignupScreen extends StatelessWidget {
       child: TabBarView(children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: tfWidth(5)),
-          child: SignInForm(),
+          child: SignInForm(
+            authProvider: authProvider,
+          ),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: tfWidth(5)),
-          child: SignUpForm(),
+          child: SignUpForm(
+            authProvider: authProvider,
+          ),
         ),
       ]),
     );

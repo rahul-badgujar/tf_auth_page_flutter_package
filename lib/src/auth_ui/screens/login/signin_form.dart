@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:tf_auth_page/src/auth_ui/utils/ui_utils.dart';
+import 'package:tf_auth_page/tf_auth_page.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_text_field.dart';
 
 class SignInForm extends StatelessWidget {
-  SignInForm({Key? key}) : super(key: key);
+  SignInForm({Key? key, required this.authProvider})
+      : super(
+          key: key,
+        );
 
   final _formKey = GlobalKey<FormState>();
   final _emailTextEditingController = TextEditingController();
   final _passwordTextEditingController = TextEditingController();
+
+  final TfAuth authProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +42,18 @@ class SignInForm extends StatelessWidget {
           Flexible(
             child: CustomElevatedButton(
               lable: "Login",
-              onPressed: () {},
+              onPressed: () async {
+                final email = _emailTextEditingController.text;
+                final password = _passwordTextEditingController.text;
+                print("Email: $email Password: $password");
+                try {
+                  await authProvider.loginWithEmailPassword(
+                      email: email, password: password);
+                } catch (e) {
+                  // handling errors here
+                  showMessagedSnackbar(context, e.toString());
+                }
+              },
             ),
           ),
           SizedBox(height: tfHeight(2.6)),
