@@ -45,7 +45,6 @@ class SignInForm extends StatelessWidget {
               onPressed: () async {
                 final email = _emailTextEditingController.text;
                 final password = _passwordTextEditingController.text;
-                print("Email: $email Password: $password");
                 try {
                   await authProvider.loginWithEmailPassword(
                       email: email, password: password);

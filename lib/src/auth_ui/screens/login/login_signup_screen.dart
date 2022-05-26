@@ -3,6 +3,7 @@ import 'package:tf_auth_firebase/tf_auth_firebase.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../resources/colors.dart';
+import '../../utils/ui_utils.dart';
 import '../../widgets/app_logo.dart';
 import 'signin_form.dart';
 import 'signup_form.dart';
@@ -121,15 +122,36 @@ class LoginSignupScreen extends StatelessWidget {
             children: [
               _buildSocialLoginButton(
                 iconAssetPath: 'assets/images/fb_logo.png',
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    await authProvider.loginWithFacebook();
+                  } catch (e) {
+                    // handling errors here
+                    showMessagedSnackbar(context, e.toString());
+                  }
+                },
               ),
               _buildSocialLoginButton(
-                iconAssetPath: 'assets/images/insta_logo.png',
-                onPressed: () {},
+                iconAssetPath: 'assets/images/google_logo.png',
+                onPressed: () async {
+                  try {
+                    await authProvider.loginWithGoogle();
+                  } catch (e) {
+                    // handling errors here
+                    showMessagedSnackbar(context, e.toString());
+                  }
+                },
               ),
               _buildSocialLoginButton(
                 iconAssetPath: 'assets/images/apple_logo.png',
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    await authProvider.loginWithApple();
+                  } catch (e) {
+                    // handling errors here
+                    showMessagedSnackbar(context, e.toString());
+                  }
+                },
               ),
             ],
           ),

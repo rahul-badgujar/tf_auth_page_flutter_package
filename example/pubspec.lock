@@ -272,8 +272,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: "31d705a4dd79f887d72342506e171332c2bf4356"
+      ref: main
+      resolved-ref: "003bb030600d06b232c6ea63e2f58c3714da5b95"
       url: "https://github.com/rahul-badgujar/tf_auth_base_flutter_package.git"
     source: git
     version: "0.0.1"
@@ -282,7 +282,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "2883408fff91b4673deddeeeb36e708591f4c735"
+      resolved-ref: f30b43725adf95bbe62f5750bcc621a915796975
       url: "https://github.com/rahul-badgujar/tf_auth_firebase_flutter_package.git"
     source: git
     version: "0.0.1"
@@ -298,7 +298,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: cc5752a42c5d96ff8f4ab46e3443189bf6e888c0
+      resolved-ref: "8238aa72c14dc3de68eda1d1e1a1b69077dcb019"
       url: "https://github.com/rahul-badgujar/tf_auth_postgres_flutter_package.git"
     source: git
     version: "0.0.1"
