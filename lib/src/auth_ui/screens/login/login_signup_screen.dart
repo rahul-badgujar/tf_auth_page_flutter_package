@@ -104,7 +104,7 @@ class LoginSignupScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: tfHeight(2)),
-        /* FittedBox(
+        FittedBox(
           fit: BoxFit.scaleDown,
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -124,7 +124,7 @@ class LoginSignupScreen extends StatelessWidget {
               ),
             ],
           ),
-        ), */
+        ),
       ],
     );
   }
