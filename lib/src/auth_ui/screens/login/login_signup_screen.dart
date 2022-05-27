@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tf_auth_firebase/tf_auth_firebase.dart';
+import 'package:tf_auth_page/src/auth_ui/utils/types.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../resources/colors.dart';
@@ -9,10 +11,19 @@ import 'signin_form.dart';
 import 'signup_form.dart';
 
 class LoginSignupScreen extends StatelessWidget {
-  const LoginSignupScreen({Key? key, required this.authProvider})
-      : super(key: key);
+  const LoginSignupScreen({
+    Key? key,
+    required this.authProvider,
+    required this.onAuthOperationFailed,
+    required this.onAuthOperationSuccess,
+    required this.onCancel,
+  }) : super(key: key);
 
   final TfAuth authProvider;
+
+  final TfAuthOperationSuccessCallback onAuthOperationSuccess;
+  final TfAuthOperationFailureCallback onAuthOperationFailed;
+  final TfAuthCancelled onCancel;
 
   @override
   Widget build(BuildContext context) {
