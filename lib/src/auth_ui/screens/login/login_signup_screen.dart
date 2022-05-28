@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tf_auth_firebase/tf_auth_firebase.dart';
 import 'package:tf_auth_page/src/auth_ui/utils/types.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
+import '../../../../tf_auth_page.dart';
 import '../../resources/colors.dart';
 import '../../utils/ui_utils.dart';
 import '../../widgets/app_logo.dart';
@@ -101,12 +101,18 @@ class LoginSignupScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: tfWidth(5)),
           child: SignInForm(
             authProvider: authProvider,
+            onAuthOperationSuccess: onAuthOperationSuccess,
+            onAuthOperationFailed: onAuthOperationFailed,
+            onCancel: onCancel,
           ),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: tfWidth(5)),
           child: SignUpForm(
             authProvider: authProvider,
+            onAuthOperationSuccess: onAuthOperationSuccess,
+            onAuthOperationFailed: onAuthOperationFailed,
+            onCancel: onCancel,
           ),
         ),
       ]),
@@ -136,9 +142,9 @@ class LoginSignupScreen extends StatelessWidget {
                 onPressed: () async {
                   try {
                     await authProvider.loginWithFacebook();
+                    await onAuthOperationSuccess(context, TfLoginOperation());
                   } catch (e) {
-                    // handling errors here
-                    showMessagedSnackbar(context, e.toString());
+                    await onAuthOperationFailed(context, TfLoginOperation(), e);
                   }
                 },
               ),
@@ -147,9 +153,9 @@ class LoginSignupScreen extends StatelessWidget {
                 onPressed: () async {
                   try {
                     await authProvider.loginWithGoogle();
+                    await onAuthOperationSuccess(context, TfLoginOperation());
                   } catch (e) {
-                    // handling errors here
-                    showMessagedSnackbar(context, e.toString());
+                    await onAuthOperationFailed(context, TfLoginOperation(), e);
                   }
                 },
               ),
@@ -158,9 +164,9 @@ class LoginSignupScreen extends StatelessWidget {
                 onPressed: () async {
                   try {
                     await authProvider.loginWithApple();
+                    await onAuthOperationSuccess(context, TfLoginOperation());
                   } catch (e) {
-                    // handling errors here
-                    showMessagedSnackbar(context, e.toString());
+                    await onAuthOperationFailed(context, TfLoginOperation(), e);
                   }
                 },
               ),

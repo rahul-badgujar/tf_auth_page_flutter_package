@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:tf_auth_page/tf_auth_page.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
+import '../../utils/types.dart';
 import '../../utils/ui_utils.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_text_field.dart';
 
 class SignUpForm extends StatelessWidget {
-  SignUpForm({Key? key, required this.authProvider}) : super(key: key);
+  SignUpForm(
+      {Key? key,
+      required this.authProvider,
+      required this.onAuthOperationSuccess,
+      required this.onAuthOperationFailed,
+      required this.onCancel})
+      : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
   final _emailTextEditingController = TextEditingController();
@@ -15,6 +22,10 @@ class SignUpForm extends StatelessWidget {
   final _confirmPasswordTextEditingController = TextEditingController();
 
   final TfAuth authProvider;
+
+  final TfAuthOperationSuccessCallback onAuthOperationSuccess;
+  final TfAuthOperationFailureCallback onAuthOperationFailed;
+  final TfAuthCancelled onCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +71,9 @@ class SignUpForm extends StatelessWidget {
                   }
                   await authProvider.signupWithEmailPassword(
                       email: email, password: password);
+                  await onAuthOperationSuccess(context, TfSignupOperation());
                 } catch (e) {
-                  // handling errors here
-                  showMessagedSnackbar(context, e.toString());
+                  await onAuthOperationFailed(context, TfSignupOperation(), e);
                 }
               },
             ),

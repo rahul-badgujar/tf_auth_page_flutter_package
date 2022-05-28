@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:tf_auth_page/src/auth_ui/utils/ui_utils.dart';
 import 'package:tf_auth_page/tf_auth_page.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
+import '../../utils/types.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_text_field.dart';
 
 class SignInForm extends StatelessWidget {
-  SignInForm({Key? key, required this.authProvider})
+  SignInForm(
+      {Key? key,
+      required this.authProvider,
+      required this.onAuthOperationSuccess,
+      required this.onAuthOperationFailed,
+      required this.onCancel})
       : super(
           key: key,
         );
@@ -17,6 +22,10 @@ class SignInForm extends StatelessWidget {
   final _passwordTextEditingController = TextEditingController();
 
   final TfAuth authProvider;
+
+  final TfAuthOperationSuccessCallback onAuthOperationSuccess;
+  final TfAuthOperationFailureCallback onAuthOperationFailed;
+  final TfAuthCancelled onCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +57,9 @@ class SignInForm extends StatelessWidget {
                 try {
                   await authProvider.loginWithEmailPassword(
                       email: email, password: password);
+                  await onAuthOperationSuccess(context, TfLoginOperation());
                 } catch (e) {
-                  // handling errors here
-                  showMessagedSnackbar(context, e.toString());
+                  await onAuthOperationFailed(context, TfLoginOperation(), e);
                 }
               },
             ),
@@ -58,16 +67,24 @@ class SignInForm extends StatelessWidget {
           SizedBox(height: tfHeight(2.6)),
           FittedBox(
             fit: BoxFit.scaleDown,
-            child: _buildForgotPasswordButton(),
+            child: _buildForgotPasswordButton(context),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildForgotPasswordButton() {
+  Widget _buildForgotPasswordButton(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () async {
+        final email = _emailTextEditingController.text;
+        try {
+          await authProvider.forgotPasswordForEmail(email: email);
+          await onAuthOperationSuccess(context, TfLoginOperation());
+        } catch (e) {
+          await onAuthOperationFailed(context, TfForgotPasswordOperation(), e);
+        }
+      },
       child: Text(
         "Forgot Password?",
         style: TextStyle(

@@ -6,6 +6,6 @@ typedef TfAuthOperationSuccessCallback = Future<void> Function(
     BuildContext context, TfAuthOperation operation);
 
 typedef TfAuthOperationFailureCallback = Future<void> Function(
-    BuildContext context, TfAuthOperation operation);
+    BuildContext context, TfAuthOperation operation, dynamic error);
 
 typedef TfAuthCancelled = Future<void> Function(BuildContext context);

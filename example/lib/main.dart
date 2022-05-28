@@ -15,11 +15,32 @@ class MyApp extends StatelessWidget {
       home: LoginSignupScreen(
         authProvider: TfAuthFirebase(),
         onAuthOperationSuccess: (context, operation) async {
-          if (operation is TfLoginOperation) {}
+          if (operation is TfLoginOperation) {
+            showMessagedSnackbar(context, 'Logged in successfully.');
+          } else if (operation is TfSignupOperation) {
+            showMessagedSnackbar(context, 'Registered successfully.');
+          } else if (operation is TfForgotPasswordOperation) {
+            showMessagedSnackbar(context, 'Resetted password successfully.');
+          }
         },
-        onAuthOperationFailed: (context, operation) async {},
-        onCancel: (context) async {},
+        onAuthOperationFailed: (context, operation, error) async {
+          if (operation is TfLoginOperation) {
+            showMessagedSnackbar(context, 'Failed to login: $error');
+          } else if (operation is TfSignupOperation) {
+            showMessagedSnackbar(context, 'Failed to register: $error');
+          } else if (operation is TfForgotPasswordOperation) {
+            showMessagedSnackbar(context, 'Failed to reset password: $error');
+          }
+        },
+        onCancel: (context) async {
+          showMessagedSnackbar(context, 'Authentication cancelled.');
+        },
       ),
     );
+  }
+
+  void showMessagedSnackbar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 }
