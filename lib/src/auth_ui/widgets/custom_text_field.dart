@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
-import '../resources/colors.dart';
-
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
@@ -22,7 +20,6 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       obscureText: obsecureText,
       style: TextStyle(
-        color: ColorPalette.textColorBright,
         fontSize: textFontSize,
       ),
       decoration: InputDecoration(
@@ -35,10 +32,8 @@ class CustomTextField extends StatelessWidget {
           borderSide: BorderSide.none,
         ),
         filled: true,
-        fillColor: Colors.black26,
         hintText: hintText,
         hintStyle: TextStyle(
-          color: ColorPalette.textColorBrightDimmed,
           fontSize: textFontSize,
         ),
       ),

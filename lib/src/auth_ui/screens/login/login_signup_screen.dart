@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:tf_auth_firebase/tf_auth_firebase.dart';
 import 'package:tf_auth_page/src/auth_ui/utils/types.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../../../tf_auth_page.dart';
-import '../../resources/colors.dart';
-import '../../utils/ui_utils.dart';
 import '../../widgets/app_logo.dart';
 import 'signin_form.dart';
 import 'signup_form.dart';
+import '../../resources/resources.dart' as rsc;
 
 class LoginSignupScreen extends StatelessWidget {
   const LoginSignupScreen({
@@ -19,8 +17,10 @@ class LoginSignupScreen extends StatelessWidget {
     required this.onCancel,
   }) : super(key: key);
 
+  // Auth providing service
   final TfAuth authProvider;
 
+  // Auth result callbacks
   final TfAuthOperationSuccessCallback onAuthOperationSuccess;
   final TfAuthOperationFailureCallback onAuthOperationFailed;
   final TfAuthCancelled onCancel;
@@ -32,7 +32,7 @@ class LoginSignupScreen extends StatelessWidget {
         return DefaultTabController(
           length: 2,
           child: Scaffold(
-            backgroundColor: ColorPalette.primaryColor,
+            // backgroundColor: Theme.of(context).backgroundColor,
             body: SafeArea(
               child: SizedBox(
                 width: double.infinity,
@@ -74,9 +74,7 @@ class LoginSignupScreen extends StatelessWidget {
     Widget _tabTitleItemBuilder(String lableText) => Tab(
           child: Text(
             "     $lableText     ",
-            style: TextStyle(
-              fontSize: tfText(2.8),
-            ),
+            style: rsc.tabTitleTextStyle(context),
           ),
         );
 
@@ -124,11 +122,9 @@ class LoginSignupScreen extends StatelessWidget {
       children: [
         Text(
           "Or use a social account to login",
-          style: TextStyle(
-            color: ColorPalette.textColorBrightDimmed,
-            fontSize: tfText(2),
-            fontWeight: FontWeight.bold,
-          ),
+          style: rsc.guiderTextStyle(context)?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
         ),
         SizedBox(height: tfHeight(2)),
         FittedBox(
@@ -138,6 +134,7 @@ class LoginSignupScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildSocialLoginButton(
+                context: context,
                 iconAssetPath: 'assets/images/fb_logo.png',
                 onPressed: () async {
                   try {
@@ -149,6 +146,7 @@ class LoginSignupScreen extends StatelessWidget {
                 },
               ),
               _buildSocialLoginButton(
+                context: context,
                 iconAssetPath: 'assets/images/google_logo.png',
                 onPressed: () async {
                   try {
@@ -160,6 +158,7 @@ class LoginSignupScreen extends StatelessWidget {
                 },
               ),
               _buildSocialLoginButton(
+                context: context,
                 iconAssetPath: 'assets/images/apple_logo.png',
                 onPressed: () async {
                   try {
@@ -178,13 +177,15 @@ class LoginSignupScreen extends StatelessWidget {
   }
 
   Widget _buildSocialLoginButton(
-      {required String iconAssetPath, required VoidCallback onPressed}) {
+      {required BuildContext context,
+      required String iconAssetPath,
+      required VoidCallback onPressed}) {
     return Padding(
       padding: EdgeInsets.all(tfImage(4)),
       child: GestureDetector(
         onTap: onPressed,
         child: CircleAvatar(
-          backgroundColor: Colors.black,
+          backgroundColor: rsc.socialLoginButtonBackgroundColor(context),
           radius: tfImage(6.5),
           child: Padding(
             padding: EdgeInsets.all(tfImage(3.4)),

@@ -5,6 +5,7 @@ import 'package:tf_responsive/tf_responsive.dart';
 import '../../utils/types.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../resources/resources.dart' as rsc;
 
 class SignInForm extends StatelessWidget {
   SignInForm(
@@ -87,11 +88,7 @@ class SignInForm extends StatelessWidget {
       },
       child: Text(
         "Forgot Password?",
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: tfText(2.2),
-        ),
+        style: rsc.guiderTextStyle(context),
       ),
     );
   }

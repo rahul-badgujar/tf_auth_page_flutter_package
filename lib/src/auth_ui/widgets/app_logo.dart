@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tf_responsive/tf_responsive.dart';
+import '../resources/resources.dart' as rsc;
 
 class AppLogo extends StatelessWidget {
   const AppLogo({
@@ -14,31 +15,21 @@ class AppLogo extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.all(tfText(1)),
-            child: Image.asset(
-              'assets/images/insta_logo.png',
-              width: tfImage(16),
-              height: tfImage(16),
-            ),
-          ),
-          SizedBox(width: tfWidth(3)),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Instagram",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: tfText(4.8),
-                  fontWeight: FontWeight.bold,
-                ),
+                "TfAuth App",
+                style: rsc.textTheme(context).headline3?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: rsc.primaryColor(context),
+                    ),
               ),
               SizedBox(height: tfHeight(0.3)),
               Text(
-                "Your place for memes, news",
+                "One Place Auth for Tenfins",
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.8),
+                  color: rsc.primaryColor(context),
                   fontSize: tfText(2),
                 ),
               ),
