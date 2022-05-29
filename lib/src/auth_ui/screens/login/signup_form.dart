@@ -3,7 +3,6 @@ import 'package:tf_auth_page/tf_auth_page.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../utils/types.dart';
-import '../../utils/ui_utils.dart';
 import '../../widgets/custom_elevated_button.dart';
 import '../../widgets/custom_text_field.dart';
 

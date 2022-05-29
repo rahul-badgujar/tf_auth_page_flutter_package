@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tf_auth_page/src/auth_ui/utils/enums.dart';
 import 'package:tf_auth_page/src/auth_ui/utils/types.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 

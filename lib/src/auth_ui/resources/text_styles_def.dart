@@ -6,9 +6,7 @@ TextTheme textTheme(BuildContext context) {
 
 TextStyle? tabTitleTextStyle(BuildContext context) {
   final _textTheme = textTheme(context);
-  return _textTheme.headline6?.copyWith(
-    fontWeight: FontWeight.bold,
-  );
+  return _textTheme.headline6?.copyWith();
 }
 
 TextStyle? guiderTextStyle(BuildContext context) {
