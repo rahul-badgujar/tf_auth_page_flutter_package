@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tf_auth_page/src/auth_ui/utils/enums.dart';
 import 'package:tf_auth_page/src/auth_ui/utils/types.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
@@ -15,6 +16,7 @@ class LoginSignupScreen extends StatelessWidget {
     required this.onAuthOperationFailed,
     required this.onAuthOperationSuccess,
     required this.onCancel,
+    this.socialLoginsRequired = const [],
   }) : super(key: key);
 
   // Auth providing service
@@ -24,6 +26,9 @@ class LoginSignupScreen extends StatelessWidget {
   final TfAuthOperationSuccessCallback onAuthOperationSuccess;
   final TfAuthOperationFailureCallback onAuthOperationFailed;
   final TfAuthCancelled onCancel;
+
+  // Social Login options
+  final List<SocialLoginType> socialLoginsRequired;
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +123,11 @@ class LoginSignupScreen extends StatelessWidget {
   }
 
   Widget _buildSocialLoginPanel(BuildContext context) {
+    final listOfSocialAuthButtons = <Widget>[];
+    for (final socialLoginType in socialLoginsRequired) {
+      listOfSocialAuthButtons
+          .add(_socialAuthButtonFromType(context, socialLoginType));
+    }
     return Column(
       children: [
         Text(
@@ -127,53 +137,57 @@ class LoginSignupScreen extends StatelessWidget {
               ),
         ),
         SizedBox(height: tfHeight(2)),
-        FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildSocialLoginButton(
-                context: context,
-                iconAssetPath: 'assets/images/fb_logo.png',
-                onPressed: () async {
-                  try {
-                    await authProvider.loginWithFacebook();
-                    await onAuthOperationSuccess(context, TfLoginOperation());
-                  } catch (e) {
-                    await onAuthOperationFailed(context, TfLoginOperation(), e);
-                  }
-                },
-              ),
-              _buildSocialLoginButton(
-                context: context,
-                iconAssetPath: 'assets/images/google_logo.png',
-                onPressed: () async {
-                  try {
-                    await authProvider.loginWithGoogle();
-                    await onAuthOperationSuccess(context, TfLoginOperation());
-                  } catch (e) {
-                    await onAuthOperationFailed(context, TfLoginOperation(), e);
-                  }
-                },
-              ),
-              _buildSocialLoginButton(
-                context: context,
-                iconAssetPath: 'assets/images/apple_logo.png',
-                onPressed: () async {
-                  try {
-                    await authProvider.loginWithApple();
-                    await onAuthOperationSuccess(context, TfLoginOperation());
-                  } catch (e) {
-                    await onAuthOperationFailed(context, TfLoginOperation(), e);
-                  }
-                },
-              ),
-            ],
-          ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: listOfSocialAuthButtons,
         ),
       ],
     );
+  }
+
+  Widget _socialAuthButtonFromType(BuildContext context, SocialLoginType type) {
+    if (type == SocialLoginType.facebook) {
+      return _buildSocialLoginButton(
+        context: context,
+        iconAssetPath: 'assets/images/fb_logo.png',
+        onPressed: () async {
+          try {
+            await authProvider.loginWithFacebook();
+            await onAuthOperationSuccess(context, TfLoginOperation());
+          } catch (e) {
+            await onAuthOperationFailed(context, TfLoginOperation(), e);
+          }
+        },
+      );
+    } else if (type == SocialLoginType.google) {
+      return _buildSocialLoginButton(
+        context: context,
+        iconAssetPath: 'assets/images/google_logo.png',
+        onPressed: () async {
+          try {
+            await authProvider.loginWithGoogle();
+            await onAuthOperationSuccess(context, TfLoginOperation());
+          } catch (e) {
+            await onAuthOperationFailed(context, TfLoginOperation(), e);
+          }
+        },
+      );
+    } else if (type == SocialLoginType.apple) {
+      return _buildSocialLoginButton(
+        context: context,
+        iconAssetPath: 'assets/images/apple_logo.png',
+        onPressed: () async {
+          try {
+            await authProvider.loginWithApple();
+            await onAuthOperationSuccess(context, TfLoginOperation());
+          } catch (e) {
+            await onAuthOperationFailed(context, TfLoginOperation(), e);
+          }
+        },
+      );
+    }
+    return const SizedBox();
   }
 
   Widget _buildSocialLoginButton(

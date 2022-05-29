@@ -13,6 +13,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       home: LoginSignupScreen(
+        socialLoginsRequired: const [
+          SocialLoginType.google,
+          SocialLoginType.facebook,
+          SocialLoginType.apple,
+        ],
         authProvider: TfAuthFirebase(),
         onAuthOperationSuccess: (context, operation) async {
           if (operation is TfLoginOperation) {
