@@ -152,8 +152,8 @@ class LoginSignupScreen extends StatelessWidget {
         iconAssetPath: 'assets/images/fb_logo.png',
         onPressed: () async {
           try {
-            await authProvider.loginWithFacebook();
-            await onAuthOperationSuccess(context, TfLoginOperation());
+            final user = await authProvider.loginWithFacebook();
+            await onAuthOperationSuccess(context, TfLoginOperation(), user);
           } catch (e) {
             await onAuthOperationFailed(context, TfLoginOperation(), e);
           }
@@ -165,8 +165,8 @@ class LoginSignupScreen extends StatelessWidget {
         iconAssetPath: 'assets/images/google_logo.png',
         onPressed: () async {
           try {
-            await authProvider.loginWithGoogle();
-            await onAuthOperationSuccess(context, TfLoginOperation());
+            final user = await authProvider.loginWithGoogle();
+            await onAuthOperationSuccess(context, TfLoginOperation(), user);
           } catch (e) {
             await onAuthOperationFailed(context, TfLoginOperation(), e);
           }
@@ -178,8 +178,8 @@ class LoginSignupScreen extends StatelessWidget {
         iconAssetPath: 'assets/images/apple_logo.png',
         onPressed: () async {
           try {
-            await authProvider.loginWithApple();
-            await onAuthOperationSuccess(context, TfLoginOperation());
+            final user = await authProvider.loginWithApple();
+            await onAuthOperationSuccess(context, TfLoginOperation(), user);
           } catch (e) {
             await onAuthOperationFailed(context, TfLoginOperation(), e);
           }

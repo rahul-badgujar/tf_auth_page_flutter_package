@@ -68,9 +68,10 @@ class SignUpForm extends StatelessWidget {
                   if (password != confirmedPassword) {
                     throw Exception('Password and Confirm Password must match');
                   }
-                  await authProvider.signupWithEmailPassword(
+                  final user = await authProvider.signupWithEmailPassword(
                       email: email, password: password);
-                  await onAuthOperationSuccess(context, TfSignupOperation());
+                  await onAuthOperationSuccess(
+                      context, TfSignupOperation(), user);
                 } catch (e) {
                   await onAuthOperationFailed(context, TfSignupOperation(), e);
                 }

@@ -23,13 +23,16 @@ class MyApp extends StatelessWidget {
         ],
         authProvider:
             TfAuthFirebase(firebaseAuthInstance: FirebaseAuth.instance),
-        onAuthOperationSuccess: (context, operation) async {
+        onAuthOperationSuccess: (context, operation, user) async {
           if (operation is TfLoginOperation) {
-            showMessagedSnackbar(context, 'Logged in successfully.');
+            showMessagedSnackbar(
+                context, 'Logged in successfully (uid:${user.email})');
           } else if (operation is TfSignupOperation) {
-            showMessagedSnackbar(context, 'Registered successfully.');
+            showMessagedSnackbar(
+                context, 'Registered successfully (uid:${user.email})');
           } else if (operation is TfForgotPasswordOperation) {
-            showMessagedSnackbar(context, 'Resetted password successfully.');
+            showMessagedSnackbar(
+                context, 'Resetted password successfully (uid:${user.email})');
           }
         },
         onAuthOperationFailed: (context, operation, error) async {

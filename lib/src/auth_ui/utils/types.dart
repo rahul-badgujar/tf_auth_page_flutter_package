@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
-
-import '../models/tf_auth_operations.dart';
+import 'package:tf_auth_page/tf_auth_page.dart';
 
 typedef TfAuthOperationSuccessCallback = Future<void> Function(
-    BuildContext context, TfAuthOperation operation);
+    BuildContext context, TfAuthOperation operation, TfAuthUser user);
 
 typedef TfAuthOperationFailureCallback = Future<void> Function(
     BuildContext context, TfAuthOperation operation, dynamic error);
