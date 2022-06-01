@@ -1,7 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tf_auth_page/tf_auth_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -18,7 +21,8 @@ class MyApp extends StatelessWidget {
           SocialLoginType.facebook,
           SocialLoginType.apple,
         ],
-        authProvider: TfAuthFirebase(),
+        authProvider:
+            TfAuthFirebase(firebaseAuthInstance: FirebaseAuth.instance),
         onAuthOperationSuccess: (context, operation) async {
           if (operation is TfLoginOperation) {
             showMessagedSnackbar(context, 'Logged in successfully.');

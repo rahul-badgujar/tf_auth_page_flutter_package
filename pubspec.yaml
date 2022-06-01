@@ -1,7 +1,7 @@
 name: tf_auth_page
 description: A new Flutter package project.
 version: 0.0.1
-homepage: null
+homepage: https://github.com/rahul-badgujar/tf_auth_page_flutter_package
 publish_to: none
 
 environment:
@@ -20,11 +20,6 @@ dependencies:
   tf_auth_firebase:
     git:
       url: https://github.com/rahul-badgujar/tf_auth_firebase_flutter_package.git
-      ref: main
-
-  tf_auth_postgres:
-    git:
-      url: https://github.com/rahul-badgujar/tf_auth_postgres_flutter_package.git
       ref: main
 
 dev_dependencies:
