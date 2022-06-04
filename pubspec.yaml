@@ -16,7 +16,7 @@ dependencies:
   tf_auth_firebase:
     git:
       url: https://github.com/rahul-badgujar/tf_auth_firebase_flutter_package.git
-      ref: main
+      ref: yash_working
   tf_responsive:
     git:
       url: https://github.com/rahul-badgujar/tf_responsive.git

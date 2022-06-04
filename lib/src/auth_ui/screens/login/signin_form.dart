@@ -82,7 +82,7 @@ class SignInForm extends StatelessWidget {
         final email = _emailTextEditingController.text;
         try {
           final user = await authProvider.forgotPasswordForEmail(email: email);
-          await onAuthOperationSuccess(context, TfLoginOperation(), user);
+          await onAuthOperationSuccess(context, TfLoginOperation(), null);
         } catch (e) {
           await onAuthOperationFailed(context, TfForgotPasswordOperation(), e);
         }
