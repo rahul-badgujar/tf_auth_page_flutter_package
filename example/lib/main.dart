@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:tf_auth_page/firebase_options.dart';
 import 'package:tf_auth_page/tf_auth_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 

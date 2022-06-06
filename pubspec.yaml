@@ -9,17 +9,17 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  firebase_core: ^1.17.1
   flutter:
     sdk: flutter
   google_fonts: ^3.0.0
-  tf_responsive:
-    git:
-      url: https://github.com/rahul-badgujar/tf_responsive.git
-      ref: main
-
   tf_auth_firebase:
     git:
       url: https://github.com/rahul-badgujar/tf_auth_firebase_flutter_package.git
+      ref: yash_working
+  tf_responsive:
+    git:
+      url: https://github.com/rahul-badgujar/tf_responsive.git
       ref: main
 
 dev_dependencies:

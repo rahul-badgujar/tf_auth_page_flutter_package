@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "524542577375-5qf0f4mnl53h1via6mca69esqqc5r6mn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.example",
+            "certificate_hash": "cb9963b267022275c02b725b7fbf9f28ee5f8cea"
+          }
+        },
+        {
+          "client_id": "524542577375-n4dpco14eqfh7dbc2500bituauo8a6pc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.example",
+            "certificate_hash": "fd25fb75c45fbe08665bf4d7fb110ef02c5ea666"
+          }
+        },
+        {
           "client_id": "524542577375-8tc7dcqjhq4klsk62at6neukq07hd7eh.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -27,8 +43,103 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "524542577375-8tc7dcqjhq4klsk62at6neukq07hd7eh.apps.googleusercontent.com",
+              "client_id": "524542577375-0j1h1co261tcc402i9bdibkfa96475pt.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "524542577375-1tgj6fgjafvqbvg0f2ca9uc22lodqm2d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524542577375:android:139a524640bb62d911776a",
+        "android_client_info": {
+          "package_name": "com.tfauthexample.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524542577375-sh5p5gdqa26qc28fe63d8iffot7310g6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tfauthexample.app",
+            "certificate_hash": "cb9963b267022275c02b725b7fbf9f28ee5f8cea"
+          }
+        },
+        {
+          "client_id": "524542577375-8tc7dcqjhq4klsk62at6neukq07hd7eh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIqB0AHgg6e-4jBM_zOZCl7QpTSlmdsns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524542577375-0j1h1co261tcc402i9bdibkfa96475pt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "524542577375-1tgj6fgjafvqbvg0f2ca9uc22lodqm2d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com."
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524542577375:android:db3e4d1bd1dd1a4e11776a",
+        "android_client_info": {
+          "package_name": "com.tfauthexample.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524542577375-oq4a7j33lthuvo2b3laa571rue2oqflv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tfauthexample.com",
+            "certificate_hash": "cb9963b267022275c02b725b7fbf9f28ee5f8cea"
+          }
+        },
+        {
+          "client_id": "524542577375-8tc7dcqjhq4klsk62at6neukq07hd7eh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIqB0AHgg6e-4jBM_zOZCl7QpTSlmdsns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524542577375-0j1h1co261tcc402i9bdibkfa96475pt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "524542577375-1tgj6fgjafvqbvg0f2ca9uc22lodqm2d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com."
+              }
             }
           ]
         }
