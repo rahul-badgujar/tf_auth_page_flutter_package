@@ -32,11 +32,22 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Future<void> _onCancel(context) async {
-    showMessagedSnackbar(context, 'Authentication cancelled.');
+  Future<void> _onAuthOperationSuccess(
+      BuildContext context, TfAuthOperation operation, TfAuthUser? user) async {
+    if (operation is TfLoginOperation) {
+      showMessagedSnackbar(
+          context, 'Logged in successfully (uid:${user?.email})');
+    } else if (operation is TfSignupOperation) {
+      showMessagedSnackbar(
+          context, 'Registered successfully (uid:${user?.email})');
+    } else if (operation is TfForgotPasswordOperation) {
+      showMessagedSnackbar(
+          context, 'Resetted password successfully (uid:${user?.email})');
+    }
   }
 
-  Future<void> _onAuthOperationFailed(context, operation, error) async {
+  Future<void> _onAuthOperationFailed(
+      BuildContext context, TfAuthOperation operation, dynamic error) async {
     if (operation is TfLoginOperation) {
       showMessagedSnackbar(context, 'Failed to login: $error');
     } else if (operation is TfSignupOperation) {
@@ -46,17 +57,8 @@ class MyApp extends StatelessWidget {
     }
   }
 
-  Future<void> _onAuthOperationSuccess(context, operation, user) async {
-    if (operation is TfLoginOperation) {
-      showMessagedSnackbar(
-          context, 'Logged in successfully (uid:${user.email})');
-    } else if (operation is TfSignupOperation) {
-      showMessagedSnackbar(
-          context, 'Registered successfully (uid:${user.email})');
-    } else if (operation is TfForgotPasswordOperation) {
-      showMessagedSnackbar(
-          context, 'Resetted password successfully (uid:${user.email})');
-    }
+  Future<void> _onCancel(BuildContext context) async {
+    showMessagedSnackbar(context, 'Authentication cancelled.');
   }
 
   void showMessagedSnackbar(BuildContext context, String message) {
