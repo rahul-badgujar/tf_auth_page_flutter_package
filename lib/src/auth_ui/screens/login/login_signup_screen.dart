@@ -8,8 +8,8 @@ import 'signin_form.dart';
 import 'signup_form.dart';
 import '../../resources/resources.dart' as rsc;
 
-class LoginSignupScreen extends StatelessWidget {
-  const LoginSignupScreen({
+class TfAuthPage extends StatelessWidget {
+  const TfAuthPage({
     Key? key,
     required this.authProvider,
     required this.onAuthOperationFailed,

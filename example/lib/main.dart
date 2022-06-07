@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tf_auth_page/firebase_options.dart';
 import 'package:tf_auth_page/tf_auth_page.dart';
 
 Future<void> main() async {
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: LoginSignupScreen(
+      home: TfAuthPage(
         socialLoginsRequired: const [
           SocialLoginType.google,
           SocialLoginType.facebook,
