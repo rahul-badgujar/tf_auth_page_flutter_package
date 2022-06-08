@@ -24,7 +24,7 @@ class SignUpForm extends StatelessWidget {
 
   final TfAuthOperationSuccessCallback onAuthOperationSuccess;
   final TfAuthOperationFailureCallback onAuthOperationFailed;
-  final TfAuthCancelled onCancel;
+  final TfAuthCancelledCallback onCancel;
 
   @override
   Widget build(BuildContext context) {

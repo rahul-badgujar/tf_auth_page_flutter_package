@@ -15,7 +15,8 @@ class TfAuthPage extends StatelessWidget {
     required this.onAuthOperationFailed,
     required this.onAuthOperationSuccess,
     required this.onCancel,
-    this.socialLoginsRequired = const [],
+    this.onUserChanged,
+    this.socialLoginsRequired = const <SocialLoginType>[],
   }) : super(key: key);
 
   // Auth providing service
@@ -24,7 +25,8 @@ class TfAuthPage extends StatelessWidget {
   // Auth result callbacks
   final TfAuthOperationSuccessCallback onAuthOperationSuccess;
   final TfAuthOperationFailureCallback onAuthOperationFailed;
-  final TfAuthCancelled onCancel;
+  final TfAuthCancelledCallback onCancel;
+  final TfAuthUserChangedCallback? onUserChanged;
 
   // Social Login options
   final List<SocialLoginType> socialLoginsRequired;
