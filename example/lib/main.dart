@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         onAuthOperationSuccess: _onAuthOperationSuccess,
         onAuthOperationFailed: _onAuthOperationFailed,
         onCancel: _onCancel,
+        onUserChanged: _onUserChanged,
       ),
     );
   }
@@ -64,5 +65,13 @@ class MyApp extends StatelessWidget {
   void showMessagedSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  Future<void> _onUserChanged(BuildContext context, TfAuthUser? user) async{
+    if(user==null) {
+      showMessagedSnackbar(context, "User Change Callback: no user");
+    } else {
+      showMessagedSnackbar(context, "User Change Callback: ${user.uid}");
+    }
   }
 }
