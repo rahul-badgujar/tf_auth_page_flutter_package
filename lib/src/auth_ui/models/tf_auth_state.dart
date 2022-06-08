@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:tf_auth_page/src/auth_ui/errors/tf_auth_state_exceptions.dart';
 import 'package:tf_auth_page/tf_auth_page.dart';
 
-class TfAuthState {
-  TfAuthState._privateConstructor();
-  static final instance = TfAuthState._privateConstructor();
+class TfAuthController {
+  TfAuthController._privateConstructor();
+  static final instance = TfAuthController._privateConstructor();
 
   bool __initialized = false;
 
@@ -16,6 +16,10 @@ class TfAuthState {
   void init({required TfAuth authProvider}) {
     _authProvider = authProvider;
     __initialized = true;
+  }
+
+  TfAuth get authProvider {
+    return _authProvider;
   }
 
   final StreamController<TfAuthUser?> _userChangesStreamController =
@@ -33,7 +37,7 @@ class TfAuthState {
 
   /// Update the current user
   set currentUser(TfAuthUser? newCurrentUser) {
-    currentUser = newCurrentUser;
+    _currentUser = newCurrentUser;
     _userChangesStreamController.sink.add(currentUser);
   }
 

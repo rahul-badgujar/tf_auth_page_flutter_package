@@ -2,10 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:tf_auth_page/tf_auth_page.dart';
 
 Future<void> main() async {
+  // Firebase configs
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // TfAuthState must be initialized before using any functionality
+  TfAuthController.instance.init(
+    authProvider: TfAuthFirebase(
+      firebaseAuthInstance: FirebaseAuth.instance,
+    ),
+  );
+  // Listen to user changes
+  TfAuthController.instance.userChanges.listen((user) {
+    if (user == null) {
+      print("User Change Listened: no-user");
+    } else {
+      print("User Change Listened: ${user.uid}");
+    }
+  });
 
   runApp(const MyApp());
 }
@@ -23,12 +38,9 @@ class MyApp extends StatelessWidget {
           SocialLoginType.facebook,
           SocialLoginType.apple,
         ],
-        authProvider:
-            TfAuthFirebase(firebaseAuthInstance: FirebaseAuth.instance),
         onAuthOperationSuccess: _onAuthOperationSuccess,
         onAuthOperationFailed: _onAuthOperationFailed,
         onCancel: _onCancel,
-        onUserChanged: _onUserChanged,
       ),
     );
   }
@@ -65,13 +77,5 @@ class MyApp extends StatelessWidget {
   void showMessagedSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(message)));
-  }
-
-  Future<void> _onUserChanged(BuildContext context, TfAuthUser? user) async{
-    if(user==null) {
-      showMessagedSnackbar(context, "User Change Callback: no user");
-    } else {
-      showMessagedSnackbar(context, "User Change Callback: ${user.uid}");
-    }
   }
 }

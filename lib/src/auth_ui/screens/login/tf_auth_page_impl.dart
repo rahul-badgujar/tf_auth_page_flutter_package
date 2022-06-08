@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tf_auth_page/src/auth_ui/utils/types.dart';
+import 'package:tf_auth_page/src/auth_ui/utils/ui_utils.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../../../tf_auth_page.dart';
@@ -11,22 +12,16 @@ import '../../resources/resources.dart' as rsc;
 class TfAuthPage extends StatelessWidget {
   const TfAuthPage({
     Key? key,
-    required this.authProvider,
     required this.onAuthOperationFailed,
     required this.onAuthOperationSuccess,
     required this.onCancel,
-    this.onUserChanged,
     this.socialLoginsRequired = const <SocialLoginType>[],
   }) : super(key: key);
-
-  // Auth providing service
-  final TfAuth authProvider;
 
   // Auth result callbacks
   final TfAuthOperationSuccessCallback onAuthOperationSuccess;
   final TfAuthOperationFailureCallback onAuthOperationFailed;
   final TfAuthCancelledCallback onCancel;
-  final TfAuthUserChangedCallback? onUserChanged;
 
   // Social Login options
   final List<SocialLoginType> socialLoginsRequired;
@@ -104,7 +99,6 @@ class TfAuthPage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: tfWidth(5)),
           child: SignInForm(
-            authProvider: authProvider,
             onAuthOperationSuccess: onAuthOperationSuccess,
             onAuthOperationFailed: onAuthOperationFailed,
             onCancel: onCancel,
@@ -113,7 +107,6 @@ class TfAuthPage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: tfWidth(5)),
           child: SignUpForm(
-            authProvider: authProvider,
             onAuthOperationSuccess: onAuthOperationSuccess,
             onAuthOperationFailed: onAuthOperationFailed,
             onCancel: onCancel,
@@ -154,9 +147,12 @@ class TfAuthPage extends StatelessWidget {
         iconAssetPath: 'assets/images/fb_logo.png',
         onPressed: () async {
           try {
-            final user = await authProvider.loginWithFacebook();
+            final user = await TfAuthController.instance.authProvider
+                .loginWithFacebook();
+            TfAuthController.instance.currentUser = user;
             await onAuthOperationSuccess(context, TfLoginOperation(), user);
           } catch (e) {
+            // TfAuthController.instance.currentUser = null;
             await onAuthOperationFailed(context, TfLoginOperation(), e);
           }
         },
@@ -167,9 +163,12 @@ class TfAuthPage extends StatelessWidget {
         iconAssetPath: 'assets/images/google_logo.png',
         onPressed: () async {
           try {
-            final user = await authProvider.loginWithGoogle();
+            final user =
+                await TfAuthController.instance.authProvider.loginWithGoogle();
+            TfAuthController.instance.currentUser = user;
             await onAuthOperationSuccess(context, TfLoginOperation(), user);
           } catch (e) {
+            // TfAuthController.instance.currentUser = null;
             await onAuthOperationFailed(context, TfLoginOperation(), e);
           }
         },
@@ -180,9 +179,12 @@ class TfAuthPage extends StatelessWidget {
         iconAssetPath: 'assets/images/apple_logo.png',
         onPressed: () async {
           try {
-            final user = await authProvider.loginWithApple();
+            final user =
+                await TfAuthController.instance.authProvider.loginWithApple();
+            TfAuthController.instance.currentUser = user;
             await onAuthOperationSuccess(context, TfLoginOperation(), user);
           } catch (e) {
+            // TfAuthController.instance.currentUser = null;
             await onAuthOperationFailed(context, TfLoginOperation(), e);
           }
         },

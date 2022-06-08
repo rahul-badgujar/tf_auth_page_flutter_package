@@ -9,7 +9,6 @@ import '../../widgets/custom_text_field.dart';
 class SignUpForm extends StatelessWidget {
   SignUpForm(
       {Key? key,
-      required this.authProvider,
       required this.onAuthOperationSuccess,
       required this.onAuthOperationFailed,
       required this.onCancel})
@@ -19,8 +18,6 @@ class SignUpForm extends StatelessWidget {
   final _emailTextEditingController = TextEditingController();
   final _passwordTextEditingController = TextEditingController();
   final _confirmPasswordTextEditingController = TextEditingController();
-
-  final TfAuth authProvider;
 
   final TfAuthOperationSuccessCallback onAuthOperationSuccess;
   final TfAuthOperationFailureCallback onAuthOperationFailed;
@@ -68,11 +65,14 @@ class SignUpForm extends StatelessWidget {
                   if (password != confirmedPassword) {
                     throw Exception('Password and Confirm Password must match');
                   }
-                  final user = await authProvider.signupWithEmailPassword(
-                      email: email, password: password);
+                  final user = await TfAuthController.instance.authProvider
+                      .signupWithEmailPassword(
+                          email: email, password: password);
+                  TfAuthController.instance.currentUser = user;
                   await onAuthOperationSuccess(
                       context, TfSignupOperation(), user);
                 } catch (e) {
+                  // TfAuthController.instance.currentUser = null;
                   await onAuthOperationFailed(context, TfSignupOperation(), e);
                 }
               },

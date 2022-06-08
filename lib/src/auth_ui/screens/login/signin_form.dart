@@ -10,7 +10,6 @@ import '../../resources/resources.dart' as rsc;
 class SignInForm extends StatelessWidget {
   SignInForm(
       {Key? key,
-      required this.authProvider,
       required this.onAuthOperationSuccess,
       required this.onAuthOperationFailed,
       required this.onCancel})
@@ -21,8 +20,6 @@ class SignInForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _emailTextEditingController = TextEditingController();
   final _passwordTextEditingController = TextEditingController();
-
-  final TfAuth authProvider;
 
   final TfAuthOperationSuccessCallback onAuthOperationSuccess;
   final TfAuthOperationFailureCallback onAuthOperationFailed;
@@ -56,11 +53,13 @@ class SignInForm extends StatelessWidget {
                 final email = _emailTextEditingController.text;
                 final password = _passwordTextEditingController.text;
                 try {
-                  final user = await authProvider.loginWithEmailPassword(
-                      email: email, password: password);
+                  final user = await TfAuthController.instance.authProvider
+                      .loginWithEmailPassword(email: email, password: password);
+                  TfAuthController.instance.currentUser = user;
                   await onAuthOperationSuccess(
                       context, TfLoginOperation(), user);
                 } catch (e) {
+                  // TfAuthController.instance.currentUser = null;
                   await onAuthOperationFailed(context, TfLoginOperation(), e);
                 }
               },
@@ -81,7 +80,8 @@ class SignInForm extends StatelessWidget {
       onPressed: () async {
         final email = _emailTextEditingController.text;
         try {
-          await authProvider.forgotPasswordForEmail(email: email);
+          await TfAuthController.instance.authProvider
+              .forgotPasswordForEmail(email: email);
           await onAuthOperationSuccess(context, TfLoginOperation(), null);
         } catch (e) {
           await onAuthOperationFailed(context, TfForgotPasswordOperation(), e);
