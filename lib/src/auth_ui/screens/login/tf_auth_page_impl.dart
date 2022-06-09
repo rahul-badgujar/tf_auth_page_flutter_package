@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tf_auth_page/src/auth_ui/utils/types.dart';
-import 'package:tf_auth_page/src/auth_ui/utils/ui_utils.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../../../tf_auth_page.dart';
@@ -149,10 +148,8 @@ class TfAuthPage extends StatelessWidget {
           try {
             final user = await TfAuthController.instance.authProvider
                 .loginWithFacebook();
-            TfAuthController.instance.currentUser = user;
             await onAuthOperationSuccess(context, TfLoginOperation(), user);
           } catch (e) {
-            // TfAuthController.instance.currentUser = null;
             await onAuthOperationFailed(context, TfLoginOperation(), e);
           }
         },
@@ -165,10 +162,8 @@ class TfAuthPage extends StatelessWidget {
           try {
             final user =
                 await TfAuthController.instance.authProvider.loginWithGoogle();
-            TfAuthController.instance.currentUser = user;
             await onAuthOperationSuccess(context, TfLoginOperation(), user);
           } catch (e) {
-            // TfAuthController.instance.currentUser = null;
             await onAuthOperationFailed(context, TfLoginOperation(), e);
           }
         },
@@ -181,10 +176,8 @@ class TfAuthPage extends StatelessWidget {
           try {
             final user =
                 await TfAuthController.instance.authProvider.loginWithApple();
-            TfAuthController.instance.currentUser = user;
             await onAuthOperationSuccess(context, TfLoginOperation(), user);
           } catch (e) {
-            // TfAuthController.instance.currentUser = null;
             await onAuthOperationFailed(context, TfLoginOperation(), e);
           }
         },

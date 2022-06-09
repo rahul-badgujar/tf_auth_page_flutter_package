@@ -345,6 +345,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
+  sign_in_with_apple:
+    dependency: transitive
+    description:
+      name: sign_in_with_apple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
+  sign_in_with_apple_platform_interface:
+    dependency: transitive
+    description:
+      name: sign_in_with_apple_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  sign_in_with_apple_web:
+    dependency: transitive
+    description:
+      name: sign_in_with_apple_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -397,7 +418,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: e56ba1f35ae4016b9113012f203c7f7860d8830c
+      resolved-ref: be4595836034470db3da482a85eb4eac661d0e85
       url: "https://github.com/rahul-badgujar/tf_auth_base_flutter_package.git"
     source: git
     version: "0.0.1"
@@ -405,8 +426,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: yash_working
-      resolved-ref: "78abb1824ec1aca7023047e1b45197308a88a30e"
+      ref: main
+      resolved-ref: "1d01e5a1d7ca99334768d80bb3dda7234e12a0a4"
       url: "https://github.com/rahul-badgujar/tf_auth_firebase_flutter_package.git"
     source: git
     version: "0.0.1"

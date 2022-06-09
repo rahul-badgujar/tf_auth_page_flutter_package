@@ -9,7 +9,6 @@ class TfAuthController {
 
   bool __initialized = false;
 
-  TfAuthUser? _currentUser;
   late final TfAuth _authProvider;
 
   /// Initialize the instance.
@@ -19,46 +18,36 @@ class TfAuthController {
   }
 
   TfAuth get authProvider {
+    __checkInstanceInitialized();
     return _authProvider;
   }
 
-  final StreamController<TfAuthUser?> _userChangesStreamController =
-      StreamController<TfAuthUser?>.broadcast();
-
   /// Stream of user changes to act on user changes.
   Stream<TfAuthUser?> get userChanges {
-    return _userChangesStreamController.stream;
+    return authProvider.userChangesStream;
   }
 
   /// Current User logged in the app
   TfAuthUser? get currentUser {
-    return _currentUser;
-  }
-
-  /// Update the current user
-  set currentUser(TfAuthUser? newCurrentUser) {
-    _currentUser = newCurrentUser;
-    _userChangesStreamController.sink.add(currentUser);
+    return authProvider.currentUser;
   }
 
   /// Returns `true` if user is not logged in
   bool get isUserNotLoggedIn {
-    return currentUser == null;
+    return authProvider.isUserNotLoggedIn;
   }
 
   /// Returns `true` if user is logged in
   bool get isUserLoggedIn {
-    return !isUserNotLoggedIn;
+    return authProvider.isUserLoggedIn;
   }
 
   /// Logout the currently logged in user
   Future<void> logout() async {
-    __checkInstanceInitialized();
-
-    await _authProvider.logout();
-    currentUser = null;
+    await authProvider.logout();
   }
 
+  /// Confirms that TfAuthState is initialized.
   void __checkInstanceInitialized() {
     if (!__initialized) {
       throw TfAuthStateNotInitialized();

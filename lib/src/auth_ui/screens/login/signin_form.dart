@@ -55,11 +55,9 @@ class SignInForm extends StatelessWidget {
                 try {
                   final user = await TfAuthController.instance.authProvider
                       .loginWithEmailPassword(email: email, password: password);
-                  TfAuthController.instance.currentUser = user;
                   await onAuthOperationSuccess(
                       context, TfLoginOperation(), user);
                 } catch (e) {
-                  // TfAuthController.instance.currentUser = null;
                   await onAuthOperationFailed(context, TfLoginOperation(), e);
                 }
               },
