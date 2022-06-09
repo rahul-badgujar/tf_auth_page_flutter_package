@@ -427,7 +427,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "1d01e5a1d7ca99334768d80bb3dda7234e12a0a4"
+      resolved-ref: "762d150e2d10a9527e3b4300fdb6234ed1fae429"
       url: "https://github.com/rahul-badgujar/tf_auth_firebase_flutter_package.git"
     source: git
     version: "0.0.1"
