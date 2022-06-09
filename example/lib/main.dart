@@ -1,4 +1,3 @@
-import 'package:example/authentication_page.dart';
 import 'package:flutter/material.dart';
 import 'package:tf_auth_page/tf_auth_page.dart';
 

@@ -2,14 +2,6 @@
 
 TfAuthPage is a Login/Signup Page UI under Tenfins TfAuth Library.
 
-## Features
-
-Provides customizations for:
-
-- Social Logins required
-- Authentication Provider
-- Callbacks to get called when any operation results
-
 ## Getting started
 
 Add dependency in your pubspec.yaml
@@ -28,6 +20,18 @@ import 'package:tf_auth_page/tf_auth_page.dart';
 ```
 
 ## Usage
+
+Make sure you initialize TfAuthController instance before using any functionality.
+
+```dart
+TfAuthController.instance.init(
+    authProvider: TfAuthFirebase(
+      firebaseAuthInstance: FirebaseAuth.instance,
+    ),
+  );
+```
+
+### Using TfAuthPage Widget
 
 Add the TfAuthPage widget in your UI
 
@@ -88,6 +92,45 @@ Future<void> _onCancel(BuildContext context) async {
 }
 ```
 
+### Using TfAuthController to access states and features
+
+```dart
+
+/* 
+    TfAuthController is a singletone providing all the auth features. 
+    You can access it from anywhere in the code.
+*/
+
+// You can access the Auth Provider setted up.
+TfAuth authProvider = TfAuthController.instance.authProvider;
+
+// Easily access the current logged in user if exists, otherwise it returns null
+TfAuthUser? currentUser= TfAuthController.instance.currentUser;
+
+// You can even listen to Auth User changes by subscribing to userChanges stream.
+TfAuthController.instance.userChanges.listen((user) {
+    if (user == null) {
+        print("User Change Listened: no-user");
+    } else {
+        print("User Change Listened: ${user.uid}");
+    }
+});
+
+/// Check if a user is logged in.
+if (TfAuthController.instance.isUserLoggedIn) {
+    print("User is logged in.");
+}
+
+// Check if no user is logged in.
+if (TfAuthController.instance.isUserNotLoggedIn) {
+    print("No user has logged in.");
+}
+
+// You can logout the user from anywhere in the code.
+await TfAuthController.instance.logout();
+```
+
+
 ## Additional information
 
 ### TfAuthOperations
@@ -99,4 +142,8 @@ Currently we have 3 operations defined
 - TfSignupOperation
 - TfForgotPasswordOperation
 
+### TfAuth Architecture
 
+[See TfAuth Architecture Diagram](https://lucid.app/lucidspark/ee7c8841-9540-4926-9f3f-e59f43e2da71/edit?viewport_loc=504%2C14%2C2972%2C1464%2C0_0&invitationId=inv_5ba614d7-3168-4a8e-8197-73dacba538f8#)
+
+Note: You will require LucidChart Account to view the above diagram. If you don't have account, [create account and login](https://lucid.app/users/login#/login).
