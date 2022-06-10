@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tf_auth_page/tf_auth_page.dart';
 
 import 'app.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   // Firebase configs
