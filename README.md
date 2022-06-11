@@ -43,10 +43,6 @@ TfAuthPage(
         SocialLoginType.facebook,
         SocialLoginType.apple,
     ],
-    // Auth implementation you want to use
-    // E.g., TfAuthFirebase, TfAuthPostgres etc.
-    authProvider:
-        TfAuthFirebase(firebaseAuthInstance: FirebaseAuth.instance),
     // Callback called when any auth operation results success
     onAuthOperationSuccess: _onAuthOperationSuccess,
     // Callback called when any auth operation results failure
@@ -129,7 +125,6 @@ if (TfAuthController.instance.isUserNotLoggedIn) {
 // You can logout the user from anywhere in the code.
 await TfAuthController.instance.logout();
 ```
-
 
 ## Additional information
 
