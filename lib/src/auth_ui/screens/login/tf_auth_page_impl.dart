@@ -144,7 +144,8 @@ class TfAuthPage extends StatelessWidget {
     if (type == SocialLoginType.facebook) {
       return _buildSocialLoginButton(
         context: context,
-        iconAssetPath: 'assets/images/fb_logo.png',
+        iconUrl:
+            'https://github.com/rahul-badgujar/tf_auth_page_flutter_package/raw/main/assets/images/fb_logo.png',
         onPressed: () async {
           try {
             final user = await TfAuthController.instance.authProvider
@@ -158,7 +159,8 @@ class TfAuthPage extends StatelessWidget {
     } else if (type == SocialLoginType.google) {
       return _buildSocialLoginButton(
         context: context,
-        iconAssetPath: 'assets/images/google_logo.png',
+        iconUrl:
+            'https://github.com/rahul-badgujar/tf_auth_page_flutter_package/raw/main/assets/images/google_logo.png',
         onPressed: () async {
           try {
             final user =
@@ -172,7 +174,8 @@ class TfAuthPage extends StatelessWidget {
     } else if (type == SocialLoginType.apple) {
       return _buildSocialLoginButton(
         context: context,
-        iconAssetPath: 'assets/images/apple_logo.png',
+        iconUrl:
+            'https://github.com/rahul-badgujar/tf_auth_page_flutter_package/raw/main/assets/images/apple_logo.png',
         onPressed: () async {
           try {
             final user =
@@ -189,7 +192,7 @@ class TfAuthPage extends StatelessWidget {
 
   Widget _buildSocialLoginButton(
       {required BuildContext context,
-      required String iconAssetPath,
+      required String iconUrl,
       required VoidCallback onPressed}) {
     return Padding(
       padding: EdgeInsets.all(tfImage(4)),
@@ -200,10 +203,9 @@ class TfAuthPage extends StatelessWidget {
           radius: tfImage(6.5),
           child: Padding(
             padding: EdgeInsets.all(tfImage(3.4)),
-            child: Image.asset(
-              iconAssetPath,
+            child: Image.network(
+              iconUrl,
               fit: BoxFit.contain,
-              package: "tf_auth_page",
             ),
           ),
         ),
