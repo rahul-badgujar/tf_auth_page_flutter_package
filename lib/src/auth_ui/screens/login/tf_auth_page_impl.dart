@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:tf_auth_page/src/auth_ui/utils/types.dart';
+import 'package:tf_auth_page/src/auth_ui/utils/ui_utils.dart';
 import 'package:tf_responsive/tf_responsive.dart';
 
 import '../../../../tf_auth_page.dart';
@@ -144,8 +147,7 @@ class TfAuthPage extends StatelessWidget {
     if (type == SocialLoginType.facebook) {
       return _buildSocialLoginButton(
         context: context,
-        iconUrl:
-            'https://github.com/rahul-badgujar/tf_auth_page_flutter_package/raw/main/assets/images/fb_logo.png',
+        iconBytes: fbIconBytes,
         onPressed: () async {
           try {
             final user = await TfAuthController.instance.authProvider
@@ -159,8 +161,7 @@ class TfAuthPage extends StatelessWidget {
     } else if (type == SocialLoginType.google) {
       return _buildSocialLoginButton(
         context: context,
-        iconUrl:
-            'https://github.com/rahul-badgujar/tf_auth_page_flutter_package/raw/main/assets/images/google_logo.png',
+        iconBytes: googleIconBytes,
         onPressed: () async {
           try {
             final user =
@@ -174,8 +175,7 @@ class TfAuthPage extends StatelessWidget {
     } else if (type == SocialLoginType.apple) {
       return _buildSocialLoginButton(
         context: context,
-        iconUrl:
-            'https://github.com/rahul-badgujar/tf_auth_page_flutter_package/raw/main/assets/images/apple_logo.png',
+        iconBytes: appleIconBytes,
         onPressed: () async {
           try {
             final user =
@@ -192,7 +192,7 @@ class TfAuthPage extends StatelessWidget {
 
   Widget _buildSocialLoginButton(
       {required BuildContext context,
-      required String iconUrl,
+      required List<int> iconBytes,
       required VoidCallback onPressed}) {
     return Padding(
       padding: EdgeInsets.all(tfImage(4)),
@@ -202,12 +202,8 @@ class TfAuthPage extends StatelessWidget {
           backgroundColor: rsc.socialLoginButtonBackgroundColor(context),
           radius: tfImage(6.5),
           child: Padding(
-            padding: EdgeInsets.all(tfImage(3.4)),
-            child: Image.network(
-              iconUrl,
-              fit: BoxFit.contain,
-            ),
-          ),
+              padding: EdgeInsets.all(tfImage(3.4)),
+              child: Image.memory(Uint8List.fromList(iconBytes))),
         ),
       ),
     );
