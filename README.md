@@ -64,13 +64,13 @@ Future<void> _onAuthOperationSuccess(BuildContext context, TfAuthOperation opera
     // Perform action you want depending on Operation Type
     if (operation is TfLoginOperation) {
       showMessagedSnackbar(
-          context, 'Logged in successfully (uid:${user.email})');
+          context, 'Logged in successfully (uid:${user?.email})');
     } else if (operation is TfSignupOperation) {
       showMessagedSnackbar(
-          context, 'Registered successfully (uid:${user.email})');
+          context, 'Registered successfully (uid:${user?.email})');
     } else if (operation is TfForgotPasswordOperation) {
       showMessagedSnackbar(
-          context, 'Resetted password successfully (uid:${user.email})');
+          context, 'Resetted password successfully (uid:${user?.email})');
     }
 }
 

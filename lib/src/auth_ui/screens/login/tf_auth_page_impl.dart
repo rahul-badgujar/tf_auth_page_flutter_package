@@ -45,7 +45,8 @@ class TfAuthPage extends StatelessWidget {
                         const AppLogo(),
                         SizedBox(height: tfHeight(5)),
                         _buildAuthTabsContent(context),
-                        _buildSocialLoginPanel(context),
+                        if (socialLoginsRequired.isNotEmpty)
+                          _buildSocialLoginPanel(context),
                         SizedBox(height: tfHeight(5)),
                       ],
                     ),
@@ -202,6 +203,7 @@ class TfAuthPage extends StatelessWidget {
             child: Image.asset(
               iconAssetPath,
               fit: BoxFit.contain,
+              package: "tf_auth_page",
             ),
           ),
         ),
