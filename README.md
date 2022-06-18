@@ -24,7 +24,7 @@ import 'package:tf_auth_page/tf_auth_page.dart';
 Make sure you initialize TfAuthController instance before using any functionality.
 
 ```dart
-TfAuthController.instance.init(
+await TfAuthController.instance.init(
     authProvider: TfAuthFirebase(
       firebaseAuthInstance: FirebaseAuth.instance,
     ),

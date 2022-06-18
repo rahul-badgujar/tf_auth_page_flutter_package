@@ -11,7 +11,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   // TfAuthState must be initialized before using any functionality
-  TfAuthController.instance.init(
+  await TfAuthController.instance.init(
     authProvider: TfAuthFirebase(
       firebaseAuthInstance: FirebaseAuth.instance,
     ),

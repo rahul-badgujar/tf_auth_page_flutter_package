@@ -12,8 +12,9 @@ class TfAuthController {
   late final TfAuth _authProvider;
 
   /// Initialize the instance.
-  void init({required TfAuth authProvider}) {
+  Future<void> init({required TfAuth authProvider}) async {
     _authProvider = authProvider;
+    await _authProvider.init();
     __initialized = true;
   }
 
