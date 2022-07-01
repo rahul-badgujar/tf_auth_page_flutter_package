@@ -16,8 +16,9 @@ dependencies:
 
   tf_responsive:
     git:
-      url: https://github.com/rahul-badgujar/tf_responsive.git
-      ref: main
+      url: git@github.com:bertbeck/tenfins_packages.git
+      path: packages/tf_responsive
+      ref: suyash
 
   tf_auth_firebase:
     git:
