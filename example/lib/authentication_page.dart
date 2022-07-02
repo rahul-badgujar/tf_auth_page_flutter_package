@@ -9,6 +9,8 @@ class AuthenticationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TfAuthPage(
+      appTitle: 'TfAuth App',
+      appTagline: 'One place for all auth features for Tenfins',
       socialLoginsRequired: const [
         SocialLoginType.google,
         SocialLoginType.facebook,

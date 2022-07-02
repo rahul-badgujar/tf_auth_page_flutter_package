@@ -14,11 +14,19 @@ import '../../resources/resources.dart' as rsc;
 class TfAuthPage extends StatelessWidget {
   const TfAuthPage({
     Key? key,
+    required this.appTitle,
+    this.appTagline,
     required this.onAuthOperationFailed,
     required this.onAuthOperationSuccess,
     required this.onCancel,
     this.socialLoginsRequired = const <SocialLoginType>[],
   }) : super(key: key);
+
+  /// Title of app which will be shown on top of Auth Page
+  final String appTitle;
+
+  /// Tagline of app which will be shown under the App Title
+  final String? appTagline;
 
   // Auth result callbacks
   final TfAuthOperationSuccessCallback onAuthOperationSuccess;
@@ -45,7 +53,10 @@ class TfAuthPage extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: tfHeight(5)),
-                        const AppLogo(),
+                        AppTitleAndTagline(
+                          appTitle: appTitle,
+                          appTagline: appTagline,
+                        ),
                         SizedBox(height: tfHeight(5)),
                         _buildAuthTabsContent(context),
                         if (socialLoginsRequired.isNotEmpty)
